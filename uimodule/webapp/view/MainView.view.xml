@@ -21,25 +21,72 @@
             <Button icon="sap-icon://action-settings" type="Transparent" />
             <Button icon="sap-icon://customer" type="Transparent" />
           </tnt:ToolHeader>
-          <FlexBox direction="Column" class="sapUiLargeMargin">
-            <Title text="Top Charts" class="sapUiSmallMarginBottom mainViewTitles" />
+          <FlexBox direction="Column" class="sapUiLargeMarginBeginEnd">
+          <!-- Top Charts -->
+          <FlexBox direction="Column" class="sapUiSmallMarginTopBottom">
+            <Title text="{i18n>titleTopCharts}" class="sapUiSmallMarginBottom mainViewTitles" />
             <Carousel
-              id="topChartsCarousel"
+              id="topcharts-carousel"
               height="auto"
               showPageIndicator="false"
               pages="{
                 path: 'charts>/items'
               }">
-              <customLayout>
-                <CarouselLayout visiblePagesCount="5" />
-              </customLayout>
-              <VBox class="relativePosition mediaIcons">
-                <Image src="{charts>track/album/images/1/url}" class="albumCovers" press="onPressSong" />
-                <core:Icon src="sap-icon://play" press="onPressSong" />
-                <Title text="{charts>track/name}" class="boldText" />
-                <Text text="{charts>track/artists/0/name}" />
-              </VBox>
-            </Carousel>
+                <customLayout>
+                  <CarouselLayout visiblePagesCount="5" />
+                </customLayout>
+                <VBox class="relativePosition mediaIcons">
+                  <Image src="{charts>track/album/images/1/url}" class="albumCovers" press="onPressSong" />
+                  <core:Icon src="sap-icon://play" press="onPressSong" />
+                  <Title text="{charts>track/name}" class="boldText" />
+                  <Text text="{charts>track/artists/0/name}" />
+                </VBox>
+              </Carousel>
+            </FlexBox>
+            <!-- New Releases -->
+            <FlexBox direction="Column" class="sapUiSmallMarginTopBottom">
+              <Title text="{i18n>titleNewReleases}" class="sapUiSmallMarginTopBottom mainViewTitles" />
+              <Carousel
+                id="new-releases-carousel"
+                height="auto"
+                showPageIndicator="false"
+                pages="{
+                  path: 'releases>/items'
+                }">
+                <customLayout>
+                  <CarouselLayout visiblePagesCount="3" />
+                </customLayout>
+                <VBox class="relativePosition mediaIcons">
+                  <Image src="{releases>images/0/url}" class="albumCovers" press="onPressNewRelease" />
+                  <core:Icon src="sap-icon://play" press="onPressNewRelease" />
+                  <Title text="{releases>name}" class="boldText" />
+                  <Text text="{releases>artists/0/name}" />
+                </VBox>
+              </Carousel>
+            </FlexBox>
+            <!-- Top Artists -->
+            <FlexBox direction="Column" class="sapUiSmallMarginTopBottom">
+              <Title text="{i18n>titleTopArtists}" class="sapUiSmallMarginTopBottom mainViewTitles" />
+              <Carousel
+                id="top-artists-carousel"
+                height="auto"
+                showPageIndicator="false"
+                pages="{
+                  path: 'topArtists>/'
+                }">
+                <customLayout>
+                  <CarouselLayout visiblePagesCount="6" />
+                </customLayout>
+                <VBox alignItems="Center">
+                  <Avatar
+                    src="{topArtists>images/1/url}"
+                    displaySize="XL"
+                    showBorder="true"
+                    press="onPressTopArtist"/>
+                  <Text text="{topArtists>name}" class="sapUiTinyMarginTop"/>
+                </VBox>
+              </Carousel>
+            </FlexBox>
           </FlexBox>
         </content>
       </Page>
