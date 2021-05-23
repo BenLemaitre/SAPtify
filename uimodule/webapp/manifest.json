@@ -52,7 +52,12 @@
         "settings": {
           "bundleName": "ble.saptify.i18n.i18n"
         }
-      }
+      },
+      "charts": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"preload": true
+			}
     },
     "resources": {
       "css": [

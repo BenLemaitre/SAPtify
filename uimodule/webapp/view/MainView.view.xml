@@ -1,11 +1,47 @@
  <mvc:View controllerName="ble.saptify.controller.MainView"
   displayBlock="true"
   xmlns="sap.m"
+  xmlns:core="sap.ui.core"
+  xmlns:tnt="sap.tnt"
   xmlns:mvc="sap.ui.core.mvc">
   <App id="idAppControl" >
     <pages>
-      <Page title="{i18n>title}">
-        <content></content>
+      <Page showHeader="false">
+        <content>
+          <tnt:ToolHeader>
+            <Title text="{i18n>toolHeaderTitle}" />
+            <IconTabHeader>
+              <items>
+                <IconTabFilter key="home" text="{i18n>tabHeaderHome}" />
+                <IconTabFilter key="explore" text="{i18n>tabHeaderExplore}" />
+                <IconTabFilter key="library" text="{i18n>tabHeaderLibrary}" />
+              </items>
+            </IconTabHeader>
+            <ToolbarSpacer />
+            <Button icon="sap-icon://action-settings" type="Transparent" />
+            <Button icon="sap-icon://customer" type="Transparent" />
+          </tnt:ToolHeader>
+          <FlexBox direction="Column" class="sapUiLargeMargin">
+            <Title text="Top Charts" class="sapUiSmallMarginBottom mainViewTitles" />
+            <Carousel
+              id="topChartsCarousel"
+              height="auto"
+              showPageIndicator="false"
+              pages="{
+                path: 'charts>/items'
+              }">
+              <customLayout>
+                <CarouselLayout visiblePagesCount="5" />
+              </customLayout>
+              <VBox class="relativePosition mediaIcons">
+                <Image src="{charts>track/album/images/1/url}" class="albumCovers" press="onPressSong" />
+                <core:Icon src="sap-icon://play" press="onPressSong" />
+                <Title text="{charts>track/name}" class="boldText" />
+                <Text text="{charts>track/artists/0/name}" />
+              </VBox>
+            </Carousel>
+          </FlexBox>
+        </content>
       </Page>
     </pages>
   </App>

@@ -64,6 +64,23 @@ sap.ui.define(
                 } else {
                     this.getRouter().navTo("appHome", {}, true /*no history*/);
                 }
+            },
+
+            getTopCharts: async function () {
+                try {
+                    const token = "**********";
+                    // Top 50 songs playlist ID: 37i9dQZEVXbNG2KDcFcKOF
+                    const res = await fetch("https://api.spotify.com/v1/playlists/37i9dQZEVXbNG2KDcFcKOF?market=US", {
+                        headers: new Headers({
+                            'Authorization': `Bearer ${token}`
+                          }), 
+                    });
+                    const {tracks} = await res.json();
+
+                    return tracks;
+                } catch (error) {
+                    console.log(error);
+                }
             }
         });
     }
